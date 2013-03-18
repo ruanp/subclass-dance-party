@@ -6,13 +6,17 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="src/dancer.js"></script>
     <script src="src/blinkyDancer.js"></script>
+    <script src="src/retroDancer.js"></script>
   </head>
   <body>
 
     <div class="topbar">
       <span class="title">object dance party</span>
-      <span class="addDancerButton" data-dancer-maker-function-name="makeBlinkyDancer">
-        <a href="#">add a dancer</a>
+      <span class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">
+        <a href="#">add a blinky dancer</a>
+      </span>
+      <span class="addDancerButton" data-dancer-maker-function-name="RetroDancer">
+        <a href="#">add a retro dancer</a>
       </span>
     </div>
 
@@ -39,13 +43,16 @@
           var dancerMakerFunction = window[dancerMakerFunctionName];
 
           // make a dancer with a random position
-          var dancer = dancerMakerFunction(
+          // debugger
+          var dancer = new dancerMakerFunction(
             $("body").height() * Math.random(),
             $("body").width() * Math.random(),
             Math.random() * 2000
           );
 
           $('body').append(dancer.$node);
+
+          window.dancers.push(dancer);
         });
       });
     </script>
