@@ -1,9 +1,3 @@
-function inherit(proto) {
-  function F() {}
-  F.prototype = proto
-  return new F
-}
-
 var Dancer = function (top, left, timeBetweenSteps) {
   this.$node = $('<span class="dancer"></span>');
   this.timeBetweenSteps = timeBetweenSteps;

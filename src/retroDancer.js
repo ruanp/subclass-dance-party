@@ -1,7 +1,4 @@
 var gimmeRandomColor = function() {
-  /* Cheers to 
-  http://paulirish.com/2009/random-hex-color-code-snippets/ 
-  */
   return '#'+Math.floor(Math.random()*16777215).toString(16);
 }
 
@@ -10,6 +7,7 @@ var RetroDancer = function(top, left, timeBetweenSteps){
 };
 
 RetroDancer.prototype = Object.create(Dancer.prototype);
+RetroDancer.prototype.constructor = RetroDancer;
 // BlinkyDancer.prototype = new Dancer();
 
 RetroDancer.prototype.step = function(){

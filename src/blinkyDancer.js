@@ -3,6 +3,7 @@ var BlinkyDancer = function(top, left, timeBetweenSteps){
 };
 
 BlinkyDancer.prototype = Object.create(Dancer.prototype);
+BlinkyDancer.prototype.constructor = BlinkyDancer;
 // BlinkyDancer.prototype = new Dancer();
 
 BlinkyDancer.prototype.step = function(){
