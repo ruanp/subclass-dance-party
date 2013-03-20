@@ -7,6 +7,8 @@ BlinkyDancer.prototype.constructor = BlinkyDancer;
 // BlinkyDancer.prototype = new Dancer();
 
 BlinkyDancer.prototype.step = function(){
+  // check for collision and run collision code
+
   Dancer.prototype.step.call(this);
 
   this.$node.toggle();

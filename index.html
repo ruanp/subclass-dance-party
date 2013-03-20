@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Dance Party</title>
+    <title>Star Reactor Dance Party</title>
+    <link href='http://fonts.googleapis.com/css?family=Tauri' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="src/dancer.js"></script>
     <script src="src/blinkyDancer.js"></script>
     <script src="src/retroDancer.js"></script>
+    <script src="src/shakyDancer.js"></script>
+    <script src="src/xwingDancer.js"></script>
   </head>
   <body>
-
+    <div class="starfield"></div>
     <div class="topbar">
       <span class="title">object dance party</span>
       <span class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">
@@ -18,11 +21,66 @@
       <span class="addDancerButton" data-dancer-maker-function-name="RetroDancer">
         <a href="#">add a retro dancer</a>
       </span>
+      <span class="addDancerButton" data-dancer-maker-function-name="ShakyDancer">
+        <a href="#">add a shaky dancer</a>
+      </span>
+      <span class="addDancerButton" data-dancer-maker-function-name="XwingDancer">
+        <a href="#">add an X Wing</a>
+      </span>
     </div>
 
     <script>
+      var crawlIntro = function () {
+        var styleChange = {
+          top: '-1600px'
+        };
+        $('.crawl').animate(styleChange, 45000, 'linear', function () {
+          $(this).fadeOut();
+          introScrollDown();
+        });
+      };
+
+      var introScrollDown = function () {
+        var styleChange = {
+          'top': '-500px'
+        };
+        $('.starfield').animate(styleChange, 5000);
+      }
+
+      // initialize the grid array
+      window.grid = [];
+
+      var collisionAvoidance = function() {
+
+        var members = window.dancers;
+
+        for (var i = 0; i < members.length; i++) {
+          // reset the collision properties
+          members[i].collision = false;
+
+          // two dimensional array
+          // divide the top and left values by 200 and round to the nearest integer
+          // then push to array[left][top]
+            // if already an element there, then a collision is happening
+            // change some property/flag on the individual elements that will impact their step
+        }
+
+      }
+
       $(document).ready(function(){
         window.dancers = [];
+        var bgImgH = 2758;
+        var bgImgW = 4000;
+        var bgImgUrl = 'url(\"./starfield.jpg\")';
+        var bgX = -Math.random() * (bgImgW - parseInt($('body').css('width')));
+        // var bgY = -Math.random() * (bgImgH - parseInt($('body').css('height')));
+
+        var setBGStyle = {
+          background: bgImgUrl+ ' ' + bgX + 'px ' + '0'
+        };
+        $('.starfield').css(setBGStyle)
+
+        crawlIntro();
 
         $(".addDancerButton").on("click", function(event){
           /* This function sets up the click handlers for the create-dancer
@@ -47,7 +105,7 @@
           var dancer = new dancerMakerFunction(
             $("body").height() * Math.random(),
             $("body").width() * Math.random(),
-            Math.random() * 2000
+            Math.random() * 200
           );
 
           $('body').append(dancer.$node);
@@ -56,6 +114,19 @@
         });
       });
     </script>
-
+    <div class="perspective">
+      <div class="crawl">
+        <header>HACK REACTOR</header>
+        <p>It is a period of civil war. pseudo-classical spaceships, 
+          striking from a hidden base, have won their first victory 
+          against the evil functional notation.</p>
+        <p>During the battle, prototypical spies managed to steal secret plans 
+          to javascript's ultimate weapon, "this.prototype.constructor", an armored 
+          space station with enough power to destroy an entire test suite.</p>
+        <p>Pursued by the functional notation's sinister agents, the 'this' keyword races 
+          home aboard her starship, custodian of the stolen plans that 
+          can save her people and restore freedom to class inheritance...</p>
+      </div>
+    </div>
   </body>
 </html>
